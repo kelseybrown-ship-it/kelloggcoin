@@ -27,3 +27,20 @@ blockchain = [
 # Anthony's KelloggCoin balance is 2650
 
 # 👇👇👇 Your code HERE 👇👇👇
+if blockchain["from_user"] == 0
+   ICO_ben_amount = blockchain["ben"]["amount"]
+  puts ICO_ben_amount 
+end 
+# else
+
+#   ICO_brian_amount = blockchain[nil][1]
+#   puts ICO_brian_amount
+
+# if from_user == "evan"
+#   puts debit_ evan
+
+# elsif from_user == "ben"
+#     puts debit_ben
+
+# if from from_user == "brian"
+#     puts debit_brian
