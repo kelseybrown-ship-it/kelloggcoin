@@ -6,6 +6,12 @@
 # of which represents a transfer of KelloggCoin from one user to another – transactions 
 # with no from_user are from the "ICO" (Initial Coin Offering)
 
+# It should print out:
+# Ben's KelloggCoin balance is 14000
+# Brian's KelloggCoin balance is 13000
+# Evan's KelloggCoin balance is 10350
+# Anthony's KelloggCoin balance is 2650
+
 blockchain = [
   { "from_user" => nil, "to_user" => "ben", "amount" => 20000 },
   { "from_user" => nil, "to_user" => "brian", "amount" => 20000 },
@@ -16,31 +22,30 @@ blockchain = [
   { "from_user" => "anthony", "to_user" => "ben", "amount" => 4500 },
   { "from_user" => "anthony", "to_user" => "evan", "amount" => 1750 }
 ]
-
-# Write code below that returns the number of KelloggCoin that each user has in their 
-# KelloggCoin "wallet".
-
-# It should print out:
-# Ben's KelloggCoin balance is 14000
-# Brian's KelloggCoin balance is 13000
-# Evan's KelloggCoin balance is 10350
-# Anthony's KelloggCoin balance is 2650
-
 # 👇👇👇 Your code HERE 👇👇👇
-if blockchain["from_user"] == 0
-   ICO_ben_amount = blockchain["ben"]["amount"]
-  puts ICO_ben_amount 
-end 
-# else
 
-#   ICO_brian_amount = blockchain[nil][1]
-#   puts ICO_brian_amount
+# Initial KelloggCoin balances
+starting_balances = {
+  "ben" => 0,
+  "brian" => 0,
+  "evan" => 0,
+  "anthony" => 0  
+}
 
-# if from_user == "evan"
-#   puts debit_ evan
+for block in blockchain
+  from_user = block["from_user"]
+  to_user = block["to_user"]
+  amount = block["amount"]
 
-# elsif from_user == "ben"
-#     puts debit_ben
+  if from_user == nil
+    starting_balances[to_user] = starting_balances[to_user] + amount  
+  else
+    starting_balances[from_user] = starting_balances[from_user] - amount  
+    starting_balances[to_user] = starting_balances[to_user] + amount    
+  end
+end
 
-# if from from_user == "brian"
-#     puts debit_brian
+# Print wallet balance of each user
+for user in starting_balances
+  puts "#{user[0].capitalize}'s KelloggCoin balance is #{user[1]}"
+end
